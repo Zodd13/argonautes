@@ -29,8 +29,27 @@ exports.addMember = (req, res, next) => {
     });
 };
 
+exports.deleteMember = (req,res,next) => {
+    let id = req.params.id;
+
+    models.Crew.findOne({
+        where: {id: id}
+    })
+        .then(function(){
+            models.Crew.destroy({
+                where : {id : id}
+            })
+            return res.status(201).json({ "Message" : "Le membre de l'équipage a bien été supprimer !"})
+        })
+        .catch(function(err){
+            return res.status(400).json(console.log(err))
+        })
+}
+
 exports.getMembers = (req,res,next) => {
-    models.Crew.findAll({})
+
+    models.Crew.findAll({
+    })
         .then(function(crewList){
             return res.status(200).json({ crewList })
         })
