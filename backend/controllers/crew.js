@@ -28,3 +28,13 @@ exports.addMember = (req, res, next) => {
         return res.status(500).json({ error : err })
     });
 };
+
+exports.getMembers = (req,res,next) => {
+    models.Crew.findAll({})
+        .then(function(crewList){
+            return res.status(200).json({ crewList })
+        })
+        .catch(function(err){
+            return res.status(400).json({ error : err })
+        })
+};

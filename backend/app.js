@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const helmet = require("helmet");
+const crewRoutes = require("./routes/crewRoutes");
+
 require("dotenv").config();
 
 app.use(express.json());
@@ -19,5 +21,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use('/api', crewRoutes);
 
 module.exports = app;
