@@ -23,8 +23,8 @@ export default {
       window.alert("Un nouveau membre a été ajouter à l'équipage ! 🫵")
       location.reload();
     },
-    deleteMember(e){
-      this.$store.dispatch("deleteMember", e.target.id )
+    deleteMember(e) {
+      this.$store.dispatch("deleteMember", e.target.id)
         .then((response) => {
           return response
         })
@@ -42,27 +42,32 @@ export default {
   <div class="hello">
     <h3>Ajouter un(e) membre à l'équipage</h3>
     <input v-model="this.member.name" type="text" />
+
     <button @click="addMember()">Ajouter un membre !</button>
   </div>
 
   <div crew--container>
     <ul class="crew--container">
       <li v-for="(member, index) in members" :key="index"> {{ member.name }}
-        <span :id="member.id" :name="member.name" @click="deleteMember" class="red--cross">X</span>
+        <span :id="member.id" :name="member.name" @click="deleteMember" class="material-icons">
+          delete
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped lang="scss">
-.red--cross {
-  color: red;
+.material-icons {
+  font-size: 1.4rem;
+  color: rgb(169, 11, 11);
+  cursor: pointer;
 }
 
 .crew--container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 60% auto;
+  max-width: 30%;
   margin: 1rem auto;
 
 }
@@ -74,6 +79,9 @@ ul {
 
 li {
   display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 10px;
 }
 
